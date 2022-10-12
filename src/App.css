@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-900
+    }
+
+}
+
+.backface-hidden{
+    backface-visibility: hidden;
+}
+
+.transition-all-1 {
+    transition: all .55s ease-out;
+}
+
+.transition-left {
+    transition: left .15s ease-out;
+    will-change: left
+}
