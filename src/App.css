@@ -9,6 +9,10 @@
 
 }
 
+body{
+    --c0: #ff9800;
+  --c1: transparent;
+}
 .backface-hidden{
     backface-visibility: hidden;
 }
@@ -18,7 +22,19 @@
 }
 
 .transition-left {
-    transition: transform 1s cubic-bezier(0.08, 0.01, 0, 1.01);
+    transition: transform 1s cubic-bezier(0, 0.06, 0.05, 0.75);
+}
+
+
+.animate {
+    background: linear-gradient(90deg, #ff9800 var(--stop, 0%), #3c3c3c 0);
+}
+
+.animate-click {
+
+    /* background: radial-gradient(circle at 12px 370px, #ff9800 20% , #3c3c3c 0); */
+    background: radial-gradient(circle at var(--x, 0) var(--y, 0), var(--gc0, var(--c0)) var(--stop1, 0%), var(--gc1, var(--c1)) 0);
+    background-size: 100vw 100vh
 }
 
 .styled-scrollbar::-webkit-scrollbar {
