@@ -1,6 +1,3 @@
-import { useRef } from "react";
-import Places from "../components/places";
-import TitlePlace from "../components/title-place";
 
 function Animation (){
 

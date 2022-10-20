@@ -8,6 +8,14 @@ function Places(props){
         {id: "4", title: "Egypto", subtitle: "Cairo", text: "Cairo can be overwhelming, as there's so much to see and do everywhere you turn. From Islamic Cairo's bustling Khan El-Khalili bazaar to the ancient Pyramids of Giza to the picturesque Nile River, you'll be immersed in this Egyptian city's history and culture before long."},
         {id: "5", title: "Egypto", subtitle: "Cairo", text: "Cairo can be overwhelming, as there's so much to see and do everywhere you turn. From Islamic Cairo's bustling Khan El-Khalili bazaar to the ancient Pyramids of Giza to the picturesque Nile River, you'll be immersed in this Egyptian city's history and culture before long."},
     ]
+
+    return (
+        <>
+            {
+                items.map( item => <ImageBlock key={item.id} item={item} />)
+            }
+        </>
+    )
     return (
         <section className="flex-none px-24 snap-always snap-center">
             <div className="flex flex-row gap-32 h-full">
