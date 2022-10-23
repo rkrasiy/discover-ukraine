@@ -58,7 +58,8 @@ function Home (){
                             <span>ence</span>
                         </TrackingTitle>
                         <SupTitle className="max-w-[220px] text-gray-400 font-semibold mt-8" mini>
-                            MADE WITH LOVE BY <span className="text-red-400">RUSLAN KRASIY</span></SupTitle> 
+                            MADE WITH LOVE BY <SimpleText className="text-red-400">RUSLAN KRASIY</SimpleText>
+                            </SupTitle>
                     </HeaderBlock>
                </Section>
             </div>
