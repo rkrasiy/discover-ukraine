@@ -13,18 +13,18 @@ function Home (){
         <div className="relative h-[60vh] overflow-hidden py-8">
             <div ref={scrollRef} className="flex  md:flex-row will-change-transform flex-col backface-hidden absolute top-0 left-0 transition-left gap-32 h-full pb-12">
                 <Section>
-                    <HeaderBlock>
-                        <SimpleTitle big>Section title</SimpleTitle>
-                        <SimpleText mini>sub title text</SimpleText>    
-                        <button className="px-8 py-2 text-lg bg-red-500 rounded-lg">Button</button>
+                    <HeaderBlock className="w-72">
+                        <SimpleTitle huge>Discover Ukraine</SimpleTitle>
+                        <SimpleText mini className="mt-4 mb-6">take a glimpse of ukrain’s bewitching attractions</SimpleText>    
+                        <button className="px-8 py-2 text-lg bg-red-500 rounded-lg tracking-[2px]">Explore</button>
                     </HeaderBlock>
                     <ContentBlock className="flex-auto" gap="gap-8">
-                        <Image src="./no-image.png" alt="principal" className="mt-4" huge />
+                        <Image src="./kiev8.jpg" alt="principal" className="mt-4" huge />
                         <div className="flex-auto flex flex-col relative">
-                            <Image src="./no-image.png" alt="people" className="mb-4" small />   
-                            <Image src="./no-image.png" alt="traditional symbol icon" className="mb-4" mini />         
-                            <Image src="./no-image.png" alt="culture" className="absolute left-[131px] top-[18%]"/>               
-                            <Image src="./no-image.png" alt="landing" large/>                   
+                            <Image src="./ukranians.jpg" alt="people" className="mb-4" small />   
+                            <Image src="./icon-b.jpg" alt="traditional symbol icon" className="mb-4" mini />         
+                            <Image src="./karpatian.jpg" alt="culture" className="absolute left-[131px] top-[18%]"/>               
+                            <Image src="./ukranians6.jpg" alt="landing" large/>                   
                         </div>
                     </ContentBlock>
                </Section>
@@ -32,7 +32,7 @@ function Home (){
                     <HeaderBlock>    
                         <SupTitle small>Popular</SupTitle>
                         <TrackingTitle>Places</TrackingTitle>
-                        <SimpleText mini className="max-w-[200px]">take a glimpse of africa’s popular places to visit</SimpleText>
+                        <SimpleText mini className="max-w-[200px]">take a glimpse of ukrain’s popular places to visit</SimpleText>
                     </HeaderBlock>
                     <ContentBlock >
                         <Places />

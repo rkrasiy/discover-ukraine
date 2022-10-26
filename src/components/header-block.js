@@ -1,6 +1,9 @@
-function HeaderBlock({children}){
+function HeaderBlock(props){
+    const {children, className} = props;
+    let classes = "flex-auto flex flex-col items-baseline justify-center p-8"
+    if(className) classes += " " + className
     return (
-        <div className="flex-auto flex flex-col items-baseline justify-center gap-4 p-8">                
+        <div className={classes}>                
             {children}
         </div>
     )

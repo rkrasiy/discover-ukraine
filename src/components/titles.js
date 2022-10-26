@@ -1,7 +1,7 @@
 function SimpleTitle(props){
     const { className, small, mini, large, big, huge } = props;
     let fontSize = "text-4xl";
-    let classes = "font-semibold text-white";
+    let classes = "font-semibold text-white mb-2 last:mb-0";
 
     if(className) classes  += " " + className;
 
@@ -19,7 +19,7 @@ function SimpleTitle(props){
 
 function TrackingTitle(props){
     const { className } = props;
-    let classes = "text-6xl font-bold tracking-tighter text-white indent-[-4px]";
+    let classes = "text-6xl font-bold tracking-tighter text-white indent-[-4px] mb-4 last:mb-0";
     if(className) classes  += " " + className
     return (
         <h2 className={classes}>{props.children}</h2>
