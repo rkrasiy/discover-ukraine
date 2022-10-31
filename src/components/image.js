@@ -1,7 +1,7 @@
 export default function Image(props){
-    const {mini, small, large, huge, src, className, alt } = props;
+    const {mini, small, large, huge, src, className, alt, object = "object-cover" } = props;
     let size = "w-[197px] h-[157px]";
-    let classes = "rounded-3xl object-cover";
+    let classes = "rounded-3xl";
 
     if(mini) size = "w-[107px] h-[118px]";
     if(small) size = "w-[110px] h-[125px]";
@@ -11,6 +11,7 @@ export default function Image(props){
     classes += " " + size;
 
     if(className) classes += " " + className;
+    classes += " " + object;
 
     return (
         <>

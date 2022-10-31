@@ -5,7 +5,7 @@ function useHorizontalScroll() {
 
     useEffect(() => {
         const el = elRef.current;
-        const stop = ((Math.floor(el.scrollWidth / 100)) - (Math.floor(window.innerWidth / 175))) * -100
+        const stop = ((Math.floor(el.scrollWidth)) - (Math.floor(window.innerWidth))) * -1//5000 - 1800
         if (el) {
             const onWheel = e => {
                 e.preventDefault();
@@ -31,6 +31,7 @@ function useHorizontalScroll() {
                         el.style.transform = `translateX(${translateX}px) skew(${skew}deg)`;
                     }
                 });
+          
             };
 
             document.querySelector("#root > div").addEventListener("wheel", onWheel);
@@ -40,11 +41,25 @@ function useHorizontalScroll() {
     return elRef;
 }
 
-
 function getNumberFromString(str, option) {
     if (!str) return 0
     let m = str.match(/-*\d+/gm)
     return parseInt(m[option])
+}
+
+
+
+export function movingElement(elem, toPos, direction){
+    animate({
+        duration: 1000,
+        timing: makeEaseOut(linear),
+
+        draw: function (progress) {
+            const move = toPos *( 1 - progress)
+            let skew = ((16 * direction) / -100) * progress;
+            elem.style.transform = `translateX(${move}px) skew(${skew}deg)`;
+        }
+    });
 }
 
 function animate({ timing, draw, duration }) {
@@ -81,4 +96,15 @@ function quad(timeFraction) {
     return timeFraction
 }
 
+function makeEaseOut2(timing) {
+
+    return function (timeFraction) {
+        return  1 - Math.pow(1 -timeFraction, 1.675)
+    }
+}
+
+function linear(timeFraction) {
+    //return  1 - timeFraction * (1 - timeFraction);
+    return 1 - Math.pow(1 -timeFraction, 1.675)
+}
 export { useHorizontalScroll }

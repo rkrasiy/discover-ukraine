@@ -1,8 +1,8 @@
-function Section({children}){
+function Section(props){
     return (
-        <section className="flex-none px-24">
+        <section ref={props.innerRef} className="flex-none px-24">
             <div className="flex flex-row gap-32 h-full">
-                {children}
+                {props.children}
             </div>
         </section>
     )
