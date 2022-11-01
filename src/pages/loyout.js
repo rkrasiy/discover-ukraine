@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { TrackingTitle, SimpleTitle } from "../components/titles";
+import Image from "../components/image";
 
 const Layout = ({children}) => {
  let activeStyle = {
@@ -19,12 +20,12 @@ const Layout = ({children}) => {
                     </li>
                 </ul>
             </nav> */}
-            <SimpleTitle className="text-white ml-4 mt-4 uppercase font-bold" small>Toukraine</SimpleTitle>
+            <SimpleTitle className="text-white ml-4 mt-4 uppercase font-extrabold" mini>Toukraine <img src="./logo-ukraine.png" className="w-10 inline" /></SimpleTitle>
         </header>
         <main>
            <Outlet />
         </main>
-        <footer className="h-[60px] bg-contain mt-auto border-slate-700 border-t-4">
+        <footer className="h-[60px] bg-contain mt-auto border-sky-800 border-t-4">
         </footer>
     </div>
   )

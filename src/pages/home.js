@@ -26,15 +26,15 @@ function Home (){
                     <HeaderBlock className="w-72">
                         <SimpleTitle huge>Discover Ukraine</SimpleTitle>
                         <SimpleText mini className="mt-4 mb-6">take a glimpse of ukrain’s bewitching attractions</SimpleText>    
-                        <button className="px-8 py-2 text-lg bg-red-500 rounded-lg tracking-[2px]" onClick={clickHandler}>Explore</button>
+                        <button className="px-8 py-2 text-lg bg-blue-500 rounded-lg tracking-[2px]" onClick={clickHandler}>Explore</button>
                     </HeaderBlock>
                     <ContentBlock className="flex-auto" gap="gap-8">
-                        <Image src="./kiev8.jpg" alt="principal" className="mt-4" huge />
+                        <Image src="./sunflower-ukraine.jpg" alt="principal" className="mt-4" huge />
                         <div className="flex-auto flex flex-col relative">
-                            <Image src="./karpatian6.jpg" alt="people" className="mb-4" small />   
-                            <Image src="./map2.png" alt="traditional symbol icon" className="mb-4" mini object="object-contain" />         
-                            <Image src="./karpatian9.jpg" alt="culture" className="absolute left-[131px] top-[18%]"/>               
-                            <Image src="./ukranians6.jpg" alt="landing" large/>                   
+                            <Image src="./karpatian-ukraine.jpg" alt="people" className="mb-4" small />   
+                            <Image src="./map-ukraine.png" alt="traditional symbol icon" className="mb-4" mini object="object-contain" />                
+                            <Image src="./karpatian-village-ukraine.jpg" alt="culture" className="absolute left-[131px] top-[18%]"/>               
+                            <Image src="./ukranian-wreath.jpg" alt="landing" large/>                   
                         </div>
                     </ContentBlock>
                </Section>
@@ -64,7 +64,7 @@ function Home (){
                                     {id:"2", text:"The largest desert in Europe is in Ukraine’s south. Oleshky Sands, located in 30 km east of Kherson is the largest expanse of sand in Europe."},
                                     {id:"3", text:"Ukraine is the world’s largest producer of sunflower seeds, so many that they’d cover the entire of Slovenia if you uprooted them!"}
                                 ].map( (item) => (
-                                    <SimpleText key={item.id} className="w-72 text-sm p-4 rounded-md bg-slate-900">{item.text}</SimpleText>
+                                    <SimpleText key={item.id} className="w-72 text-slate-300 p-4 rounded-md bg-zinc-900" small>{item.text}</SimpleText>
                                 ))
                             }
                         </div>
@@ -74,7 +74,7 @@ function Home (){
                                     {id:"4", text:"Optymistychna Cave is the longest cave in Eurasia and the fifth-longest cave in the world."},
                                     {id:"5", text:"Ukraine has about 50 ski resorts."},
                                 ].map( (item) => (
-                                    <SimpleText key={item.id} className="w-72 text-sm p-4 rounded-md bg-slate-900 ">{item.text}</SimpleText>
+                                    <SimpleText key={item.id} className="w-72 text-sm text-slate-300 p-4 rounded-md bg-zinc-900">{item.text}</SimpleText>
                                 ))
                             }
                         </div>
@@ -88,8 +88,8 @@ function Home (){
                             <span>experi-</span>
                             <span>ence</span>
                         </TrackingTitle>
-                        <SupTitle className="max-w-[220px] text-gray-400 font-semibold mt-24" mini>
-                            MADE WITH LOVE BY <SimpleText className="text-red-400">RUSLAN KRASIY</SimpleText>
+                        <SupTitle className="max-w-[220px] font-semibold mt-24 text-yellow-600" mini>
+                            MADE WITH LOVE IN Ivano-Frankivsk, Ukraine
                             </SupTitle>
                     </HeaderBlock>
                </Section>

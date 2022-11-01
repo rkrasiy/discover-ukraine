@@ -15,7 +15,7 @@ function ImageBlock ({item}) {
                 <div>
                     <Image src={subImage} alt="sub" className="my-4"/>     
                     <div className="flex max-w-xs items-center">
-                        <img src="./icon1a.png" alt="icon" className="h-[70px] object-cover" /> 
+                        <img src="./icon-text.png" alt="icon" className="h-[70px] object-cover" /> 
                         <SimpleText className="ml-4" mini>{text}</SimpleText>
                     </div>        
                 </div>

@@ -5,7 +5,9 @@ function useHorizontalScroll() {
 
     useEffect(() => {
         const el = elRef.current;
-        const stop = ((Math.floor(el.scrollWidth)) - (Math.floor(window.innerWidth))) * -1//5000 - 1800
+        const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100
+        
+       
         if (el) {
             const onWheel = e => {
                 e.preventDefault();
@@ -21,7 +23,7 @@ function useHorizontalScroll() {
                 if (movePX > 0) translateX = 0
                 else if (movePX < stop) translateX = elPosX
                 else translateX = movePX
-
+                
                 animate({
                     duration: 220,
                     timing: makeEaseOut(quad),

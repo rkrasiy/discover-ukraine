@@ -4,7 +4,9 @@
 
 @layer base {
     body {
+        /* @apply bg-stone-900 */
         /* @apply bg-neutral-900 */
+        /* @apply bg-zinc-900 */
         /* @apply bg-gray-900 */
         /* @apply bg-slate-900 */
         background-color: #060606;
@@ -17,15 +19,16 @@
     backface-visibility: hidden;
 }
 footer{
-    background-image: url(../public/footer-image4a.png);
+    background-image: url(../public/footer-icon.png);
 }
 .transition-left {
     transition: transform 1s cubic-bezier(0, 0.06, 0.05, 0.75);
 }
 
 .bg-image-footer{
-    background-image: url(../public/bg-block2.png);
-    background-size: contain;
+    background-image: url(../public/image-icons.png);
+    background-size: cover;
+    background-position: 50% -5px;
 }
 .styled-scrollbar::-webkit-scrollbar {
     width: 1em;

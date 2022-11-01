@@ -4,7 +4,7 @@ function SimpleText(props){
 
     if(mini) fontSize = "text-[13px]";
     if(small) fontSize = "text-[14px]";
-    if(large) fontSize = "text-[13px]";
+    if(large) fontSize = "text-[17px]";
 
     let classes = "text-gray-400 tracking-wider break-words " + fontSize;
     if(className) classes += " " + className
