@@ -22,10 +22,10 @@ const Layout = ({children}) => {
             </nav> */}
             <SimpleTitle className="text-white ml-4 mt-4 uppercase font-extrabold" mini>Toukraine <img src="./logo-ukraine.png" className="w-10 inline" /></SimpleTitle>
         </header>
-        <main>
+        <main className="flex-grow flex items-center">
            <Outlet />
         </main>
-        <footer className="h-[60px] bg-contain mt-auto border-sky-800 border-t-4">
+        <footer className="h-[60px] border-sky-800 border-t-4">
         </footer>
     </div>
   )

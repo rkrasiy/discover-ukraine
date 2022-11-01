@@ -20,9 +20,10 @@
 }
 footer{
     background-image: url(../public/footer-icon.png);
+    background-size: auto 100%;
 }
 .transition-left {
-    transition: transform 1s cubic-bezier(0, 0.06, 0.05, 0.75);
+    transition: transform .5s cubic-bezier(0, 0.06, 0.05, 0.75);
 }
 
 .bg-image-footer{

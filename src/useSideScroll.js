@@ -5,35 +5,41 @@ function useHorizontalScroll() {
 
     useEffect(() => {
         const el = elRef.current;
-        const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100
-        
-       
+        const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100      
         if (el) {
             const onWheel = e => {
+
                 e.preventDefault();
+                // const mql = window.matchMedia('(max-width: 991px)');
+                // if(mql.matches) {
+                //     el.style.transform = `translateX(${0}px) skew(${0}deg)`;
+                //     return 
+                // }
                 const elPosX = getNumberFromString(el.style.transform, 0)
          
                 if(elPosX === 0 && e.deltaY < 0) return
                 else if(elPosX === stop && e.deltaY > 0) return
-           
                 let movePX = elPosX - e.deltaY;
                 let translateX = 0;
 
-
+                let controller = 1 - e.deltaY / 3;
                 if (movePX > 0) translateX = 0
-                else if (movePX < stop) translateX = elPosX
-                else translateX = movePX
-                
+                else if (movePX < stop){ 
+                    translateX = elPosX;
+                    controller = 0;
+                }else translateX = movePX
+
                 animate({
                     duration: 220,
                     timing: makeEaseOut(quad),
 
                     draw: function (progress) {
-                        let skew = ((16 * e.deltaY) / -100) * progress;
-                        el.style.transform = `translateX(${translateX}px) skew(${skew}deg)`;
+                        const skew = (controller * 0.65) * progress;
+                        const move = controller * progress;
+
+                        el.style.transform = `translateX(${translateX + move}px) skew(${skew}deg)`;
                     }
-                });
-          
+                });          
             };
 
             document.querySelector("#root > div").addEventListener("wheel", onWheel);
