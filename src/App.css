@@ -4,12 +4,10 @@
 
 @layer base {
     body {
-        /* @apply bg-stone-900 */
-        /* @apply bg-neutral-900 */
-        /* @apply bg-zinc-900 */
-        /* @apply bg-gray-900 */
-        /* @apply bg-slate-900 */
         background-color: #060606;
+    }
+    body, html{
+        @apply overflow-hidden
     }
 
 
@@ -18,10 +16,7 @@
 .backface-hidden{
     backface-visibility: hidden;
 }
-footer{
-    background-image: url(../public/icons/footer-icon.png);
-    background-size: auto 100%;
-}
+
 .transition-left {
     transition: transform .5s cubic-bezier(0, 0.06, 0.05, 0.75);
 }
