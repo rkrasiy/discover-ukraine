@@ -19,7 +19,7 @@
     backface-visibility: hidden;
 }
 footer{
-    background-image: url(../public/footer-icon.png);
+    background-image: url(../public/icons/footer-icon.png);
     background-size: auto 100%;
 }
 .transition-left {
@@ -27,7 +27,7 @@ footer{
 }
 
 .bg-image-footer{
-    background-image: url(../public/image-icons.png);
+    background-image: url(../public/icons/image-icons.png);
     background-size: cover;
     background-position: 50% -5px;
 }

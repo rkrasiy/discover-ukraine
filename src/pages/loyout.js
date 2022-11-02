@@ -1,26 +1,13 @@
-import { Outlet, NavLink } from "react-router-dom";
-import { TrackingTitle, SimpleTitle } from "../components/titles";
-import Image from "../components/image";
+import { Outlet } from "react-router-dom";
+import { SimpleTitle } from "../components/titles";
 
-const Layout = ({children}) => {
- let activeStyle = {
-    textDecoration: "underline",
-  };
+
+const Layout = () => {
 
   return (
     <div className="flex flex-col h-screen">
         <header className="h-[50px]">
-            {/* <nav className="p-4">
-                <ul className="flex flex-row gap-4">
-                    <li>
-                        <NavLink end to="/" className="text-white" style={({isActive}) => (isActive ? activeStyle : null)}>Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="animation" className="text-white" style={({isActive}) => (isActive ? activeStyle : null)}>Animations</NavLink>
-                    </li>
-                </ul>
-            </nav> */}
-            <SimpleTitle className="text-white ml-4 mt-4 uppercase font-extrabold" mini>Toukraine <img src="./logo-ukraine.png" className="w-10 inline" /></SimpleTitle>
+            <SimpleTitle className="text-white ml-4 mt-4 uppercase font-extrabold" mini>Toukraine <img src="./logo-ukraine.png" className="w-10 inline" alt="logotipo"/></SimpleTitle>
         </header>
         <main className="flex-grow flex items-center">
            <Outlet />

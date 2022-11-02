@@ -104,13 +104,6 @@ function quad(timeFraction) {
     return timeFraction
 }
 
-function makeEaseOut2(timing) {
-
-    return function (timeFraction) {
-        return  1 - Math.pow(1 -timeFraction, 1.675)
-    }
-}
-
 function linear(timeFraction) {
     //return  1 - timeFraction * (1 - timeFraction);
     return 1 - Math.pow(1 -timeFraction, 1.675)

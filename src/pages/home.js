@@ -28,12 +28,12 @@ function Home (){
                         <button className="px-8 py-2 text-lg bg-yellow-500 rounded-lg tracking-[2px] uppercase font-semibold" onClick={clickHandler}>Explore</button>
                     </HeaderBlock>
                     <ContentBlock className="flex-auto" gap="gap-8">
-                        <Image src="./sunflower-ukraine.jpg" alt="principal" className="mt-4" huge />
+                        <Image src="./images/sunflower-ukraine.jpg" alt="principal" className="mt-4" huge />
                         <div className="flex-auto flex flex-col relative">
-                            <Image src="./karpatian-ukraine.jpg" alt="people" className="mb-4" small />   
-                            <Image src="./map-ukraine.png" alt="traditional symbol icon" className="mb-4" mini object="object-contain" />                
-                            <Image src="./karpatian-village-ukraine.jpg" alt="culture" className="absolute left-[131px] top-[18%]"/>               
-                            <Image src="./ukranian-wreath.jpg" alt="landing" large/>                   
+                            <Image src="./images/karpatian-ukraine.jpg" alt="people" className="mb-4" small />   
+                            <Image src="./images/map-ukraine.png" alt="traditional symbol icon" className="mb-4" mini object="object-contain" />                
+                            <Image src="./images/karpatian-village-ukraine.jpg" alt="culture" className="absolute left-[131px] top-[18%]"/>               
+                            <Image src="./images/ukranian-wreath.jpg" alt="landing" large/>                   
                         </div>
                     </ContentBlock>
                </Section>
