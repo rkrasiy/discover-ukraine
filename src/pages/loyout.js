@@ -1,9 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { SimpleTitle } from "../components/titles";
 
-
 const Layout = () => {
-
   return (
     <div className="flex flex-col h-screen">
         <header className="h-[50px] fixed left-0 top-0 w-screen">
@@ -12,7 +10,7 @@ const Layout = () => {
         <main className="flex-grow flex items-center">
            <Outlet />
         </main>
-        <footer className="border-sky-800 border-t-4 fixed left-0 bottom-0 w-screen">
+        <footer className="border-sky-800 lg:border-t-4 border-t-2 fixed left-0 bottom-0 w-screen">
             <img src="./icons/ukraine-pattern.png" alt="ukraine pattern" className="w-full" />
         </footer>
     </div>
