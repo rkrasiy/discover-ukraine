@@ -43,6 +43,16 @@ function useHorizontalScroll() {
             };
 
             document.querySelector("#root > div").addEventListener("wheel", onWheel);
+            if("ontouchstart" in window){
+                //el.addEventListener('touchstart', touchStartHandler);
+                window.addEventListener('touchmove', onWheel);
+                //el.addEventListener('touchend', touchEndHandler);
+            }
+
+            // document.querySelector("#root > div").addEventListener('touchmove', function() { 
+            //     //touchmove works for iOS, I don't know if Android supports it
+            //      document.querySelector("#root > div").trigger('mousewheel');
+            // });
             return () => el.removeEventListener("wheel", onWheel);
         }
     });
