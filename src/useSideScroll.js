@@ -7,9 +7,9 @@ function useHorizontalScroll() {
         const el = elRef.current;
         const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100      
         if (el) {
-            const onWheel = e => {
+            const scrollHandler = (dx) => {
 
-                e.preventDefault();
+              //  e.preventDefault();
                 // const mql = window.matchMedia('(max-width: 991px)');
                 // if(mql.matches) {
                 //     el.style.transform = `translateX(${0}px) skew(${0}deg)`;
@@ -17,12 +17,12 @@ function useHorizontalScroll() {
                 // }
                 const elPosX = getNumberFromString(el.style.transform, 0)
          
-                if(elPosX === 0 && e.deltaY < 0) return
-                else if(elPosX === stop && e.deltaY > 0) return
-                let movePX = elPosX - e.deltaY;
+                if(elPosX === 0 && dx < 0) return
+                else if(elPosX === stop && dx > 0) return
+                let movePX = elPosX - dx;
                 let translateX = 0;
 
-                let controller = 1 - e.deltaY / 3;
+                let controller = 1 - dx / 3;
                 if (movePX > 0) translateX = 0
                 else if (movePX < stop){ 
                     translateX = elPosX;
@@ -41,19 +41,40 @@ function useHorizontalScroll() {
                     }
                 });          
             };
+            const pos = {
+                dy: 0
+            }
+            const controller = (e) =>{
+                if(e.type === 'touchstart')
+                    pos.dy =  e.touches[0].pageY
+                
+                if(e.type === 'touchmove'){
+                    const touch = e.touches[0] || e.changedTouches[0];
+                    let res = pos.dy - touch.pageY;
+                   
+                    
+                    //console.log("move", res )
+                    scrollHandler(res / 8)
+                } else if (e.type === 'wheel') {
+                    e.preventDefault();
+                    scrollHandler(e.deltaY)
+                }
+            }
 
-            document.querySelector("#root > div").addEventListener("wheel", onWheel);
+            document.querySelector("#root > div").addEventListener("wheel", controller);
+            
             if("ontouchstart" in window){
-                //el.addEventListener('touchstart', touchStartHandler);
-                window.addEventListener('touchmove', onWheel);
-                //el.addEventListener('touchend', touchEndHandler);
+              
+               window.addEventListener('touchstart', controller);
+               window.addEventListener('touchmove', controller);
+               
             }
 
             // document.querySelector("#root > div").addEventListener('touchmove', function() { 
             //     //touchmove works for iOS, I don't know if Android supports it
             //      document.querySelector("#root > div").trigger('mousewheel');
             // });
-            return () => el.removeEventListener("wheel", onWheel);
+            return () => el.removeEventListener("wheel", scrollHandler);
         }
     });
     return elRef;
