@@ -7,7 +7,14 @@ function useHorizontalScroll() {
         const el = elRef.current;
         const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100      
         if (el) {
-            const scrollHandler = (dx, skewMove) => {
+            const scrollHandler = (dx) => {
+
+              //  e.preventDefault();
+                // const mql = window.matchMedia('(max-width: 991px)');
+                // if(mql.matches) {
+                //     el.style.transform = `translateX(${0}px) skew(${0}deg)`;
+                //     return 
+                // }
                 const elPosX = getNumberFromString(el.style.transform, 0)
          
                 if(elPosX === 0 && dx < 0) return
@@ -16,12 +23,10 @@ function useHorizontalScroll() {
                 let translateX = 0;
 
                 let cof = 1 - dx / 3;
-                let skewC = skewMove;
                 if (movePX > 0) translateX = 0
                 else if (movePX < stop){ 
                     translateX = elPosX;
                     cof = 0;
-                    skewC = 0
                 }else translateX = movePX
 
                 animate({
@@ -29,7 +34,7 @@ function useHorizontalScroll() {
                     timing: makeEaseOut(quad),
 
                     draw: function (progress) {
-                        const skew = (skewC * 0.65) * progress;
+                        const skew = (cof * 0.65) * progress;
                         const move = cof * progress;
 
                         el.style.transform = `translateX(${translateX + move}px) skew(${skew}deg)`;
@@ -37,7 +42,7 @@ function useHorizontalScroll() {
                 });          
             };
             let direction = 1;
-            let step  = 14;
+            let coff  = 8;
 
             let startPoint;
             const controller = (e) =>{
@@ -54,12 +59,10 @@ function useHorizontalScroll() {
                         startPoint =  touch.clientY;
                         direction = 1
                     }
-                    let skewTouch = 1 - (step * direction * 2);
-                    scrollHandler(step * direction, skewTouch)
+                    scrollHandler(coff * direction)
                 } else if (e.type === 'wheel') {
-                    let skewWheel = 1 - e.deltaY / 3;
                     e.preventDefault();
-                    scrollHandler(e.deltaY, skewWheel)
+                    scrollHandler(e.deltaY)
                 }
             }
 
