@@ -7,14 +7,7 @@ function useHorizontalScroll() {
         const el = elRef.current;
         const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100      
         if (el) {
-            const scrollHandler = (dx) => {
-
-              //  e.preventDefault();
-                // const mql = window.matchMedia('(max-width: 991px)');
-                // if(mql.matches) {
-                //     el.style.transform = `translateX(${0}px) skew(${0}deg)`;
-                //     return 
-                // }
+            const scrollHandler = (dx, skewMove) => {
                 const elPosX = getNumberFromString(el.style.transform, 0)
          
                 if(elPosX === 0 && dx < 0) return
@@ -22,11 +15,13 @@ function useHorizontalScroll() {
                 let movePX = elPosX - dx;
                 let translateX = 0;
 
-                let controller = 1 - dx / 3;
+                let cof = 1 - dx / 3;
+                let skewC = skewMove;
                 if (movePX > 0) translateX = 0
                 else if (movePX < stop){ 
                     translateX = elPosX;
-                    controller = 0;
+                    cof = 0;
+                    skewC = 0
                 }else translateX = movePX
 
                 animate({
@@ -34,30 +29,37 @@ function useHorizontalScroll() {
                     timing: makeEaseOut(quad),
 
                     draw: function (progress) {
-                        const skew = (controller * 0.65) * progress;
-                        const move = controller * progress;
+                        const skew = (skewC * 0.65) * progress;
+                        const move = cof * progress;
 
                         el.style.transform = `translateX(${translateX + move}px) skew(${skew}deg)`;
                     }
                 });          
             };
-            const pos = {
-                dy: 0
-            }
+            let direction = 1;
+            let step  = 14;
+
+            let startPoint;
             const controller = (e) =>{
                 if(e.type === 'touchstart')
-                    pos.dy =  e.touches[0].pageY
+                    startPoint = e.touches[0].clientY;
                 
                 if(e.type === 'touchmove'){
                     const touch = e.touches[0] || e.changedTouches[0];
-                    let res = pos.dy - touch.pageY;
-                   
-                    
-                    //console.log("move", res )
-                    scrollHandler(res / 8)
+
+                    if(touch.clientY > startPoint + 5){
+                        startPoint =  touch.clientY;
+                        direction = -1
+                    }else if(touch.clientY < startPoint - 5){
+                        startPoint =  touch.clientY;
+                        direction = 1
+                    }
+                    let skewTouch = 1 - (step * direction * 2);
+                    scrollHandler(step * direction, skewTouch)
                 } else if (e.type === 'wheel') {
+                    let skewWheel = 1 - e.deltaY / 3;
                     e.preventDefault();
-                    scrollHandler(e.deltaY)
+                    scrollHandler(e.deltaY, skewWheel)
                 }
             }
 
