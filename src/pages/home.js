@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { useHorizontalScroll, movingElement } from "../useSideScroll";
+import { useRef, useState } from "react";
+import { useHorizontalScroll, horizontalScroll } from "../useSideScroll";
 import Section from "../components/section";
 import HeaderBlock from "../components/header-block";
 import ContentBlock from "../components/content-block";
@@ -8,14 +8,21 @@ import SimpleText from "../components/simple-text";
 import Image from "../components/image";
 import ImageBlock from "../components/image-block";
 import {placesJson, travelFactsJson} from "../storage";
+import FixedButtons from "../components/fixed-buttons";
 
 function Home (){
     const scrollRef = useHorizontalScroll(); 
     const firstBlock = useRef(); 
+    const [  isButtonVisilbe, setButtonVisible ] = useState(false)
 
-    const clickHandler = ()=>{
-        const moveTo = -Math.abs(firstBlock.current.offsetLeft);
-        movingElement(scrollRef.current, moveTo , 120)
+    const showButtons = (boolean) => {
+        if(boolean !== isButtonVisilbe){
+            setButtonVisible(boolean)
+        }
+    }
+
+    const clickHandler = (direction)=>{
+        horizontalScroll(scrollRef.current, direction, showButtons, isButtonVisilbe)
     }
 
     return (
@@ -25,7 +32,11 @@ function Home (){
                     <HeaderBlock className="w-72">
                         <SimpleTitle huge>Discover Ukraine</SimpleTitle>
                         <SimpleText mini className="mt-4 mb-6">take a glimpse of ukrain’s bewitching attractions</SimpleText>    
-                        <button className="px-8 py-2 text-lg bg-yellow-500 rounded-lg tracking-[2px] uppercase font-semibold" onClick={clickHandler}>Explore</button>
+                        <button 
+                            className="px-8 py-2 text-lg bg-yellow-500 rounded-lg tracking-[2px] uppercase font-semibold" 
+                            onClick={
+                                () => clickHandler(-1)
+                            }>Explore</button>
                     </HeaderBlock>
                     <ContentBlock className="flex-auto" gap="gap-8">
                         <Image src="./images/sunflower-ukraine.jpg" alt="principal" className="mt-4" huge />
@@ -83,6 +94,7 @@ function Home (){
                     </HeaderBlock>
                </Section>
             </div>
+            <FixedButtons clicked={clickHandler} isVisible={isButtonVisilbe}/>
         </div>
     )
 }

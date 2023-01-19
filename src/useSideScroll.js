@@ -5,28 +5,24 @@ function useHorizontalScroll() {
 
     useEffect(() => {
         const el = elRef.current;
-        const stop = Math.floor(((el.scrollWidth - window.innerWidth)) / 100) * -100      
-        if (el) {
-            const scrollHandler = (dx) => {
+        const stop = getStopPoint(el)   
 
-              //  e.preventDefault();
-                // const mql = window.matchMedia('(max-width: 991px)');
-                // if(mql.matches) {
-                //     el.style.transform = `translateX(${0}px) skew(${0}deg)`;
-                //     return 
-                // }
+        if( el ) {
+            const scrollHandler = ( dx ) => {
                 const elPosX = getNumberFromString(el.style.transform, 0)
          
                 if(elPosX === 0 && dx < 0) return
                 else if(elPosX === stop && dx > 0) return
+               
                 let movePX = elPosX - dx;
-                let translateX = 0;
+                let translateX;
 
-                let cof = 1 - dx / 3;
+                let moving = 1 - dx / 3;
+
                 if (movePX > 0) translateX = 0
                 else if (movePX < stop){ 
                     translateX = elPosX;
-                    cof = 0;
+                    moving = 0;
                 }else translateX = movePX
 
                 animate({
@@ -34,18 +30,18 @@ function useHorizontalScroll() {
                     timing: makeEaseOut(quad),
 
                     draw: function (progress) {
-                        const skew = (cof * 0.65) * progress;
-                        const move = cof * progress;
+                        const skew = (moving * 0.65) * progress;
+                        const move = moving * progress;
 
                         el.style.transform = `translateX(${translateX + move}px) skew(${skew}deg)`;
                     }
                 });          
             };
-            let direction = 1;
-            let coff  = 8;
 
-            let startPoint;
             const controller = (e) =>{
+                let direction = 1;
+                let startPoint;
+
                 if(e.type === 'touchstart')
                     startPoint = e.touches[0].clientY;
                 
@@ -59,7 +55,9 @@ function useHorizontalScroll() {
                         startPoint =  touch.clientY;
                         direction = 1
                     }
-                    scrollHandler(coff * direction)
+                    
+                    scrollHandler(8 * direction);
+
                 } else if (e.type === 'wheel') {
                     e.preventDefault();
                     scrollHandler(e.deltaY)
@@ -75,10 +73,6 @@ function useHorizontalScroll() {
                
             }
 
-            // document.querySelector("#root > div").addEventListener('touchmove', function() { 
-            //     //touchmove works for iOS, I don't know if Android supports it
-            //      document.querySelector("#root > div").trigger('mousewheel');
-            // });
             return () => el.removeEventListener("wheel", scrollHandler);
         }
     });
@@ -87,27 +81,51 @@ function useHorizontalScroll() {
 
 function getNumberFromString(str, option) {
     if (!str) return 0
+    
     let m = str.match(/-*\d+/gm)
+    
     return parseInt(m[option])
 }
 
+function getStopPoint(el){
+    return  Math.floor(((el.scrollWidth -( window.innerWidth / 1.3))) / 100) * -100   
+}
 
+function horizontalScroll(el, dir, showButtons){
+    let dx =( window.innerWidth * dir) * .9 ;
+    const stop = getStopPoint(el)     
 
-export function movingElement(elem, toPos, direction){
+    const elPosX = getNumberFromString(el.style.transform, 0)
+
+    if(dir < 0 && elPosX + dx < 0 ) showButtons(true)
+    else if(dir > 0 && elPosX + dx >= 0 ) showButtons(false)
+
+    if(elPosX === 0 && dx > 0) return
+    if(elPosX < stop) return
+    else if(elPosX + dx < stop) dx = stop - elPosX
+    
+    let translateX;
+    const movePX = elPosX + dx;
+    const transPx = 1 - dx + (400 * dir);
+    const skeyDeg = dx / 50;
+
+    if (movePX > 0)  translateX = 0
+    else if (movePX < stop) translateX = elPosX - transPx;
+    else translateX = movePX
+
     animate({
-        duration: 1000,
+        duration: 1500,
         timing: makeEaseOut(linear),
-
         draw: function (progress) {
-            const move = toPos *( 1 - progress)
-            let skew = ((16 * direction) / -100) * progress;
-            elem.style.transform = `translateX(${move}px) skew(${skew}deg)`;
+            const skew = (skeyDeg * 0.65) * progress;
+            const move = transPx * progress;
+
+            el.style.transform = `translateX(${translateX + move}px) skew(${skew}deg)`;
         }
-    });
+    });   
 }
 
 function animate({ timing, draw, duration }) {
-
     let start = performance.now();
 
     requestAnimationFrame(function animate(time) {
@@ -129,19 +147,20 @@ function animate({ timing, draw, duration }) {
 }
 
 function makeEaseOut(timing) {
-
     return function (timeFraction) {
         return 1 - timing(1 - timeFraction);
     }
 }
 
 function quad(timeFraction) {
-    //return Math.pow(timeFraction, 2)
     return timeFraction
 }
 
 function linear(timeFraction) {
-    //return  1 - timeFraction * (1 - timeFraction);
     return 1 - Math.pow(1 -timeFraction, 1.675)
 }
-export { useHorizontalScroll }
+
+export { 
+    useHorizontalScroll,
+    horizontalScroll    
+}
